@@ -16,17 +16,13 @@
 
 package com.example.android.eggtimernotifications.util
 
+import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.app.PendingIntent
 import android.content.Context
-import android.content.Intent
-import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.os.Build
 import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
-import androidx.core.content.ContextCompat
-import com.example.android.eggtimernotifications.MainActivity
 import com.example.android.eggtimernotifications.R
-import com.example.android.eggtimernotifications.receiver.SnoozeReceiver
 
 // Notification ID.
 private val NOTIFICATION_ID = 0
@@ -39,7 +35,10 @@ private val FLAGS = 0
  *
  * @param context, activity context.
  */
-fun NotificationManager.sendNotification(messageBody: String, applicationContext: Context) {
+fun NotificationManager.sendNotification(
+    messageBody: String,
+    applicationContext: Context,
+) {
     // Create the content intent for the notification, which launches
     // this activity
     // TODO: Step 1.11 create intent
@@ -70,6 +69,26 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
         // TODO: Step 2.5 set priority
 
     notify(NOTIFICATION_ID, notificationBuilder.build())
+}
+
+fun NotificationManager.createChannel(
+    channelId: String,
+    channelName: String,
+) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        NotificationChannel(
+            channelId,
+            channelName,
+            NotificationManager.IMPORTANCE_LOW
+        ).apply {
+            enableLights(true)
+            lightColor = Color.RED
+            enableVibration(true)
+            description = "Time for breakfast"
+        }.run {
+            createNotificationChannel(this)
+        }
+    }
 }
 
 // TODO: Step 1.14 Cancel all notifications
