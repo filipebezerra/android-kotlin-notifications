@@ -43,6 +43,9 @@ fun NotificationManager.sendNotification(
     applicationContext: Context,
 ) {
     val contentIntent = Intent(applicationContext, MainActivity::class.java)
+        .apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
     val contentPendingIntent = PendingIntent.getActivity(
         applicationContext,
         REQUEST_CODE,
