@@ -91,4 +91,4 @@ fun NotificationManager.createChannel(
     }
 }
 
-// TODO: Step 1.14 Cancel all notifications
+fun NotificationManager.cancelNotifications() = cancelAll()
