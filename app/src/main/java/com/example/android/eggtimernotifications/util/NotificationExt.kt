@@ -21,6 +21,7 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
 import androidx.core.app.NotificationCompat
@@ -49,8 +50,16 @@ fun NotificationManager.sendNotification(
         PendingIntent.FLAG_UPDATE_CURRENT
     )
 
-    // TODO: Step 2.0 add style
     // TODO: Step 2.2 add snooze action
+
+    val eggImage = BitmapFactory.decodeResource(
+        applicationContext.resources,
+        R.drawable.cooked_egg
+    )
+
+    val style = NotificationCompat.BigPictureStyle()
+        .bigPicture(eggImage)
+        .bigLargeIcon(null)
 
     // Build the notification
     val notificationBuilder = NotificationCompat.Builder(
@@ -62,6 +71,8 @@ fun NotificationManager.sendNotification(
         .setContentText(messageBody)
         .setContentIntent(contentPendingIntent)
         .setAutoCancel(true)
+        .setStyle(style)
+        .setLargeIcon(eggImage)
 
     // TODO: Step 1.8 use the new 'breakfast' notification channel
         // TODO: Step 2.1 add style to builder
