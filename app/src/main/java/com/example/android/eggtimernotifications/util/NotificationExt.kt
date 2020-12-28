@@ -25,13 +25,14 @@ import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
 import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
 import com.example.android.eggtimernotifications.MainActivity
 import com.example.android.eggtimernotifications.R
+import com.example.android.eggtimernotifications.receiver.SnoozeReceiver
 
 // Notification ID.
 private val NOTIFICATION_ID = 0
 private val REQUEST_CODE = 0
-private val FLAGS = 0
 
 /**
  * Builds and delivers the notification.
@@ -53,7 +54,13 @@ fun NotificationManager.sendNotification(
         PendingIntent.FLAG_UPDATE_CURRENT
     )
 
-    // TODO: Step 2.2 add snooze action
+    val snoozeIntent = Intent(applicationContext, SnoozeReceiver::class.java)
+    val snoozePendingIntent = PendingIntent.getBroadcast(
+        applicationContext,
+        REQUEST_CODE,
+        snoozeIntent,
+        PendingIntent.FLAG_ONE_SHOT
+    )
 
     val eggImage = BitmapFactory.decodeResource(
         applicationContext.resources,
@@ -76,6 +83,11 @@ fun NotificationManager.sendNotification(
         .setAutoCancel(true)
         .setStyle(style)
         .setLargeIcon(eggImage)
+        .addAction(
+            R.drawable.egg_icon,
+            applicationContext.getString(R.string.snooze),
+            snoozePendingIntent
+        )
 
     // TODO: Step 1.8 use the new 'breakfast' notification channel
         // TODO: Step 2.1 add style to builder
