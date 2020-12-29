@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.eggtimernotifications.ui
+package com.example.android.eggtimernotifications.timer
 
 import android.os.Bundle
 import android.view.LayoutInflater

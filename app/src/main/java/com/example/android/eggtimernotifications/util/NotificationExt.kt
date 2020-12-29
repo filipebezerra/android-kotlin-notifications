@@ -28,6 +28,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.example.android.eggtimernotifications.MainActivity
 import com.example.android.eggtimernotifications.R
+import com.example.android.eggtimernotifications.important.ImportantActivity
 import com.example.android.eggtimernotifications.receiver.SnoozeReceiver
 
 private val NOTIFICATION_ID = 0
@@ -43,9 +44,7 @@ fun NotificationManager.sendNotification(
     context: Context,
 ) {
     val contentIntent = Intent(context, MainActivity::class.java)
-        .apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        }
+        .apply { flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK }
     val contentPendingIntent = PendingIntent.getActivity(
         context,
         REQUEST_CODE,
@@ -69,6 +68,15 @@ fun NotificationManager.sendNotification(
     val style = NotificationCompat.BigPictureStyle()
         .bigPicture(eggImage)
         .bigLargeIcon(null)
+
+    val fullScreenIntent = Intent(context, ImportantActivity::class.java)
+        .apply { flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK }
+    val fullScreenPedingIntent = PendingIntent.getActivity(
+        context,
+        REQUEST_CODE,
+        fullScreenIntent,
+        PendingIntent.FLAG_UPDATE_CURRENT
+    )
 
     NotificationCompat.Builder(
         context,
@@ -99,6 +107,8 @@ fun NotificationManager.sendNotification(
         // This information about your notification category is used by the system to make decisions about displaying your notification when the device is in Do Not Disturb mode.
         // https://developer.android.com/training/notify-user/build-notification#system-category
         .setCategory(NotificationCompat.CATEGORY_REMINDER)
+        .setFullScreenIntent(fullScreenPedingIntent, true)
+        .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
         .run {
             notify(NOTIFICATION_ID, this.build())
         }
