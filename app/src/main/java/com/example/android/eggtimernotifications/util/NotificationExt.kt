@@ -107,6 +107,7 @@ fun NotificationManager.sendNotification(
         // This information about your notification category is used by the system to make decisions about displaying your notification when the device is in Do Not Disturb mode.
         // https://developer.android.com/training/notify-user/build-notification#system-category
         .setCategory(NotificationCompat.CATEGORY_REMINDER)
+        // https://developer.android.com/training/notify-user/build-notification#urgent-message
         .setFullScreenIntent(fullScreenPedingIntent, true)
         .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
         .run {
@@ -128,6 +129,7 @@ fun NotificationManager.createChannel(
             lightColor = Color.RED
             enableVibration(true)
             description = "Time for breakfast"
+            setShowBadge(false)
         }.run {
             createNotificationChannel(this)
         }
