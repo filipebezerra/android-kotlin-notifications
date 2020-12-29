@@ -25,45 +25,44 @@ import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
 import androidx.core.app.NotificationCompat
-import androidx.core.content.ContextCompat
+import androidx.core.app.NotificationManagerCompat
 import com.example.android.eggtimernotifications.MainActivity
 import com.example.android.eggtimernotifications.R
 import com.example.android.eggtimernotifications.receiver.SnoozeReceiver
 
-// Notification ID.
 private val NOTIFICATION_ID = 0
 private val REQUEST_CODE = 0
 
 /**
  * Builds and delivers the notification.
  *
- * @param context, activity context.
+ * @param context activity context.
  */
 fun NotificationManager.sendNotification(
     messageBody: String,
-    applicationContext: Context,
+    context: Context,
 ) {
-    val contentIntent = Intent(applicationContext, MainActivity::class.java)
+    val contentIntent = Intent(context, MainActivity::class.java)
         .apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
     val contentPendingIntent = PendingIntent.getActivity(
-        applicationContext,
+        context,
         REQUEST_CODE,
         contentIntent,
         PendingIntent.FLAG_UPDATE_CURRENT
     )
 
-    val snoozeIntent = Intent(applicationContext, SnoozeReceiver::class.java)
+    val snoozeIntent = Intent(context, SnoozeReceiver::class.java)
     val snoozePendingIntent = PendingIntent.getBroadcast(
-        applicationContext,
+        context,
         REQUEST_CODE,
         snoozeIntent,
         PendingIntent.FLAG_ONE_SHOT
     )
 
     val eggImage = BitmapFactory.decodeResource(
-        applicationContext.resources,
+        context.resources,
         R.drawable.cooked_egg
     )
 
@@ -71,30 +70,38 @@ fun NotificationManager.sendNotification(
         .bigPicture(eggImage)
         .bigLargeIcon(null)
 
-    // Build the notification
-    val notificationBuilder = NotificationCompat.Builder(
-        applicationContext,
-        applicationContext.getString(R.string.egg_notification_channel_id)
+    NotificationCompat.Builder(
+        context,
+        context.getString(R.string.egg_notification_channel_id)
     )
         .setSmallIcon(R.drawable.egg_icon)
-        .setContentTitle(applicationContext.getString(R.string.notification_title))
+        .setContentTitle(context.getString(R.string.notification_title))
         .setContentText(messageBody)
         .setContentIntent(contentPendingIntent)
+        // auto dissmiss notification from status bar
         .setAutoCancel(true)
+        // style notifications with Big Style containing a big image
         .setStyle(style)
+        // use this to show a small icon when collapsing the notification
         .setLargeIcon(eggImage)
+        // snooze action to reeschedule the notification
         .addAction(
             R.drawable.egg_icon,
-            applicationContext.getString(R.string.snooze),
+            context.getString(R.string.snooze),
             snoozePendingIntent
         )
-
-    // TODO: Step 1.8 use the new 'breakfast' notification channel
-        // TODO: Step 2.1 add style to builder
-        // TODO: Step 2.3 add snooze action
-        // TODO: Step 2.5 set priority
-
-    notify(NOTIFICATION_ID, notificationBuilder.build())
+        // priority defines the level of user interruption
+            // High priority makes a sound and appears as a heads up notification
+            // Default priority makes a sound
+            // Low priority makes no sound
+            // Min priority makes no sound and does not appear in the status bar
+        .setPriority(NotificationManagerCompat.IMPORTANCE_HIGH)
+        // This information about your notification category is used by the system to make decisions about displaying your notification when the device is in Do Not Disturb mode.
+        // https://developer.android.com/training/notify-user/build-notification#system-category
+        .setCategory(NotificationCompat.CATEGORY_REMINDER)
+        .run {
+            notify(NOTIFICATION_ID, this.build())
+        }
 }
 
 fun NotificationManager.createChannel(
@@ -105,7 +112,7 @@ fun NotificationManager.createChannel(
         NotificationChannel(
             channelId,
             channelName,
-            NotificationManager.IMPORTANCE_LOW
+            NotificationManager.IMPORTANCE_HIGH
         ).apply {
             enableLights(true)
             lightColor = Color.RED

@@ -74,6 +74,7 @@ class EggTimerViewModel(private val app: Application) : AndroidViewModel(app) {
             PendingIntent.FLAG_NO_CREATE
         ) != null
 
+        // TODO: Improve it - Remove this DRY code
         notifyPendingIntent = PendingIntent.getBroadcast(
             getApplication(),
             REQUEST_CODE,
@@ -124,6 +125,7 @@ class EggTimerViewModel(private val app: Application) : AndroidViewModel(app) {
                 }
                 val triggerTime = SystemClock.elapsedRealtime() + selectedInterval
 
+                // TODO: Improve it - Remove this DRY code
                 app.applicationContext.getNotificationManager().cancelNotifications()
 
                 AlarmManagerCompat.setExactAndAllowWhileIdle(

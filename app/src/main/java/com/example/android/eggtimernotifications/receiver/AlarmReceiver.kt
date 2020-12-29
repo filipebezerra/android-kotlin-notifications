@@ -28,7 +28,7 @@ class AlarmReceiver: BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         context.getNotificationManager().sendNotification(
             context.getString(R.string.eggs_ready),
-            context.applicationContext
+            context
         )
     }
 }
