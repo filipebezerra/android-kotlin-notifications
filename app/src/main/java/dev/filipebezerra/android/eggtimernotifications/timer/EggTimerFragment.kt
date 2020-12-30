@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.eggtimernotifications.timer
+package dev.filipebezerra.android.eggtimernotifications.timer
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -22,10 +22,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.example.android.eggtimernotifications.R
-import com.example.android.eggtimernotifications.databinding.FragmentEggTimerBinding
-import com.example.android.eggtimernotifications.util.createChannel
-import com.example.android.eggtimernotifications.util.getNotificationManager
+import dev.filipebezerra.android.eggtimernotifications.R
+import dev.filipebezerra.android.eggtimernotifications.databinding.FragmentEggTimerBinding
+import dev.filipebezerra.android.eggtimernotifications.util.createChannel
+import dev.filipebezerra.android.eggtimernotifications.util.getNotificationManager
 
 class EggTimerFragment : Fragment() {
 

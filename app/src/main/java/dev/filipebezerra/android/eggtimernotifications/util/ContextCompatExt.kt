@@ -1,4 +1,4 @@
-package com.example.android.eggtimernotifications.util
+package dev.filipebezerra.android.eggtimernotifications.util
 
 import android.app.NotificationManager
 import android.content.Context

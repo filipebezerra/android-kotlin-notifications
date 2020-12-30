@@ -14,7 +14,7 @@
  * limitations under the License.
  */
  
-package com.example.android.eggtimernotifications.timer
+package dev.filipebezerra.android.eggtimernotifications.timer
 
 import android.app.AlarmManager
 import android.app.Application
@@ -28,10 +28,10 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.android.eggtimernotifications.R
-import com.example.android.eggtimernotifications.receiver.AlarmReceiver
-import com.example.android.eggtimernotifications.util.cancelNotifications
-import com.example.android.eggtimernotifications.util.getNotificationManager
+import dev.filipebezerra.android.eggtimernotifications.R
+import dev.filipebezerra.android.eggtimernotifications.receiver.AlarmReceiver
+import dev.filipebezerra.android.eggtimernotifications.util.cancelNotifications
+import dev.filipebezerra.android.eggtimernotifications.util.getNotificationManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

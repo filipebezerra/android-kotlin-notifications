@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".important.ImportantActivity"
+    tools:context="dev.filipebezerra.android.eggtimernotifications.important.ImportantActivity"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout

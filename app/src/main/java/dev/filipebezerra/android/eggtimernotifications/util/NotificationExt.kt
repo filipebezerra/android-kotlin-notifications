@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.eggtimernotifications.util
+package dev.filipebezerra.android.eggtimernotifications.util
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -26,10 +26,10 @@ import android.graphics.Color
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import com.example.android.eggtimernotifications.MainActivity
-import com.example.android.eggtimernotifications.R
-import com.example.android.eggtimernotifications.important.ImportantActivity
-import com.example.android.eggtimernotifications.receiver.SnoozeReceiver
+import dev.filipebezerra.android.eggtimernotifications.MainActivity
+import dev.filipebezerra.android.eggtimernotifications.R
+import dev.filipebezerra.android.eggtimernotifications.important.ImportantActivity
+import dev.filipebezerra.android.eggtimernotifications.receiver.SnoozeReceiver
 
 private val NOTIFICATION_ID = 0
 private val REQUEST_CODE = 0

@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.example.android.eggtimernotifications.receiver
+package dev.filipebezerra.android.eggtimernotifications.receiver
 
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import com.example.android.eggtimernotifications.R
-import com.example.android.eggtimernotifications.util.getNotificationManager
-import com.example.android.eggtimernotifications.util.sendNotification
+import dev.filipebezerra.android.eggtimernotifications.R
+import dev.filipebezerra.android.eggtimernotifications.util.getNotificationManager
+import dev.filipebezerra.android.eggtimernotifications.util.sendNotification
 
 class AlarmReceiver: BroadcastReceiver() {
 

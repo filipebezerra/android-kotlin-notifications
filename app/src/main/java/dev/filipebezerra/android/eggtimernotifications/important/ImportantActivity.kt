@@ -1,10 +1,11 @@
-package com.example.android.eggtimernotifications.important
+package dev.filipebezerra.android.eggtimernotifications.important
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.databinding.DataBindingUtil.setContentView
-import com.example.android.eggtimernotifications.R
-import com.example.android.eggtimernotifications.databinding.ImportantActivityBinding
+import dev.filipebezerra.android.eggtimernotifications.R
+import dev.filipebezerra.android.eggtimernotifications.databinding.ImportantActivityBinding
 
 class ImportantActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
