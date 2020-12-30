@@ -16,6 +16,7 @@
 
 package dev.filipebezerra.android.eggtimernotifications.timer
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -45,13 +46,25 @@ class EggTimerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        context?.run{
-            getNotificationManager().createChannel(
-                getString(R.string.egg_notification_channel_id),
-                getString(R.string.egg_notification_channel_name)
-            )
+        context?.run {
+            createEggTimerNotificationChannel()
+            createBreakfastNotificationChannel()
         }
     }
+
+    private fun Context.createEggTimerNotificationChannel() =
+        getNotificationManager().createChannel(
+            getString(R.string.egg_notification_channel_id),
+            getString(R.string.egg_notification_channel_name),
+            getString(R.string.egg_notification_channel_description)
+        )
+
+    private fun Context.createBreakfastNotificationChannel() =
+        getNotificationManager().createChannel(
+            getString(R.string.breakfast_notification_channel_id),
+            getString(R.string.breakfast_notification_channel_name),
+            getString(R.string.breakfast_notification_channel_description)
+        )
 
     companion object {
         fun newInstance() = EggTimerFragment()

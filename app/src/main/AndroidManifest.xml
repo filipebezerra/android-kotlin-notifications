@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
 
     <application
+        android:name=".EggTimerApplication"
         android:allowBackup="true"
         android:icon="@drawable/egg_icon"
         android:label="@string/app_name"
@@ -38,6 +39,36 @@
             android:name="dev.filipebezerra.android.eggtimernotifications.receiver.SnoozeReceiver"
             android:enabled="true"
             android:exported="false"
+            />
+
+        <service
+            android:name=".service.EggTimerFirebaseMessagingService"
+            android:exported="false"
+            >
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <!--
+            Set custom default icon. This is used when no icon is set for incoming notification messages.
+            See README(https://goo.gl/l4GJaQ) for more.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:value="@drawable/common_google_signin_btn_icon_dark"
+            />
+        <!--
+            Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:value="@color/colorAccent"
+            />
+        <!-- FCM Default Channel -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/breakfast_notification_channel_id"
             />
     </application>
 

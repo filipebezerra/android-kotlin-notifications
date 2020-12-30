@@ -118,6 +118,7 @@ fun NotificationManager.sendNotification(
 fun NotificationManager.createChannel(
     channelId: String,
     channelName: String,
+    channelDescription: String,
 ) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         NotificationChannel(
@@ -128,7 +129,7 @@ fun NotificationManager.createChannel(
             enableLights(true)
             lightColor = Color.RED
             enableVibration(true)
-            description = "Time for breakfast"
+            description = channelDescription
             setShowBadge(false)
         }.run {
             createNotificationChannel(this)

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "662070897175",
+    "project_id": "egg-timer-59de8",
+    "storage_bucket": "egg-timer-59de8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:662070897175:android:3becb7029d5f23f260ca52",
+        "android_client_info": {
+          "package_name": "dev.filipebezerra.android.eggtimernotifications"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "662070897175-vnfjeoi2oguro0dbvt48ktvbfru7kt34.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dev.filipebezerra.android.eggtimernotifications",
+            "certificate_hash": "8c2424ba513d384fd4ec9f1dfa6099b0b36e677d"
+          }
+        },
+        {
+          "client_id": "662070897175-pd3g3r728ecgd20o2m3dil14br2k9kha.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBB6hjA-ebIWIonwu0quEzYLaZG3v_4CM8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "662070897175-pd3g3r728ecgd20o2m3dil14br2k9kha.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
