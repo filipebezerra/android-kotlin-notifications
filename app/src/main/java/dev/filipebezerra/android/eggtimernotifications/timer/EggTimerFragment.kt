@@ -23,10 +23,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.google.firebase.messaging.FirebaseMessaging
 import dev.filipebezerra.android.eggtimernotifications.R
 import dev.filipebezerra.android.eggtimernotifications.databinding.FragmentEggTimerBinding
 import dev.filipebezerra.android.eggtimernotifications.util.createChannel
 import dev.filipebezerra.android.eggtimernotifications.util.getNotificationManager
+import dev.filipebezerra.android.eggtimernotifications.util.subscribeToTopicBreakfast
 
 class EggTimerFragment : Fragment() {
 
@@ -49,6 +51,7 @@ class EggTimerFragment : Fragment() {
         context?.run {
             createEggTimerNotificationChannel()
             createBreakfastNotificationChannel()
+            subscribeToTopicBreakfast()
         }
     }
 
@@ -65,6 +68,9 @@ class EggTimerFragment : Fragment() {
             getString(R.string.breakfast_notification_channel_name),
             getString(R.string.breakfast_notification_channel_description)
         )
+
+    private fun Context.subscribeToTopicBreakfast() =
+        FirebaseMessaging.getInstance().subscribeToTopicBreakfast(this)
 
     companion object {
         fun newInstance() = EggTimerFragment()

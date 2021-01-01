@@ -26,6 +26,7 @@ import android.graphics.Color
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
 import dev.filipebezerra.android.eggtimernotifications.MainActivity
 import dev.filipebezerra.android.eggtimernotifications.R
 import dev.filipebezerra.android.eggtimernotifications.important.ImportantActivity
@@ -110,6 +111,7 @@ fun NotificationManager.sendNotification(
         // https://developer.android.com/training/notify-user/build-notification#urgent-message
         .setFullScreenIntent(fullScreenPedingIntent, true)
         .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+        .setVibrate(longArrayOf(100, 200, 100, 200))
         .run {
             notify(NOTIFICATION_ID, this.build())
         }
