@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (C) 2019 Google Inc.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,12 +24,19 @@
     <string name="fcm_message">FCM Message</string>
     <string name="message_subscribe_failed">Failed to subscribe to topic</string>
     <string name="message_subscribed">Subscribed to topic</string>
+
+    <!-- Egg Timer Notification Channel -->
     <string name="egg_notification_channel_id" translatable="false">egg_channel</string>
     <string name="egg_notification_channel_name" translatable="true">Egg</string>
+    <string name="egg_notification_channel_description">Time for breakfast</string>
+
+    <!-- Breakfast Notification Channel -->
     <string name="breakfast_notification_channel_id" translatable="false">fcm_default_channel</string>
     <string name="breakfast_notification_channel_name" translatable="true">Breakfast</string>
+
     <string name="eggs_ready">It is time! Bon appetit!</string>
-    <string name="timer_running">Egg timer is running...</string>
+    <string name="timer_running">Egg timer is running…</string>
     <string name="breakfast_notification_channel_description">Breakfast reminder</string>
     <string name="snooze">Snooze</string>
+    <string name="important">Important!!!</string>
 </resources>

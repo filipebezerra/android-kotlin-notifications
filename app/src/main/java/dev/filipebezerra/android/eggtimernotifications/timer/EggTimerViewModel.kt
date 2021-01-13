@@ -14,20 +14,27 @@
  * limitations under the License.
  */
  
-package com.example.android.eggtimernotifications.ui
+package dev.filipebezerra.android.eggtimernotifications.timer
 
-import android.app.*
+import android.app.AlarmManager
+import android.app.Application
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.CountDownTimer
 import android.os.SystemClock
 import androidx.core.app.AlarmManagerCompat
-import androidx.core.content.ContextCompat
-import androidx.lifecycle.*
-import com.example.android.eggtimernotifications.receiver.AlarmReceiver
-import com.example.android.eggtimernotifications.R
-import com.example.android.eggtimernotifications.util.sendNotification
-import kotlinx.coroutines.*
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
+import dev.filipebezerra.android.eggtimernotifications.R
+import dev.filipebezerra.android.eggtimernotifications.receiver.AlarmReceiver
+import dev.filipebezerra.android.eggtimernotifications.util.cancelNotifications
+import dev.filipebezerra.android.eggtimernotifications.util.getNotificationManager
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class EggTimerViewModel(private val app: Application) : AndroidViewModel(app) {
 
@@ -57,7 +64,6 @@ class EggTimerViewModel(private val app: Application) : AndroidViewModel(app) {
     val isAlarmOn: LiveData<Boolean>
         get() = _alarmOn
 
-
     private lateinit var timer: CountDownTimer
 
     init {
@@ -68,6 +74,7 @@ class EggTimerViewModel(private val app: Application) : AndroidViewModel(app) {
             PendingIntent.FLAG_NO_CREATE
         ) != null
 
+        // TODO: Improve it - Remove this DRY code
         notifyPendingIntent = PendingIntent.getBroadcast(
             getApplication(),
             REQUEST_CODE,
@@ -118,9 +125,8 @@ class EggTimerViewModel(private val app: Application) : AndroidViewModel(app) {
                 }
                 val triggerTime = SystemClock.elapsedRealtime() + selectedInterval
 
-                // TODO: Step 1.5 get an instance of NotificationManager and call sendNotification
-
-                // TODO: Step 1.15 call cancel notification
+                // TODO: Improve it - Remove this DRY code
+                app.applicationContext.getNotificationManager().cancelNotifications()
 
                 AlarmManagerCompat.setExactAndAllowWhileIdle(
                     alarmManager,

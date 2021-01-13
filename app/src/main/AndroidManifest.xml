@@ -1,50 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (C) 2019 Google Inc.
-  ~
-  ~ Licensed under the Apache License, Version 2.0 (the "License");
-  ~ you may not use this file except in compliance with the License.
-  ~ You may obtain a copy of the License at
-  ~
-  ~     http://www.apache.org/licenses/LICENSE-2.0
-  ~
-  ~ Unless required by applicable law or agreed to in writing, software
-  ~ distributed under the License is distributed on an "AS IS" BASIS,
-  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  ~ See the License for the specific language governing permissions and
-  ~ limitations under the License.
-  -->
-
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.example.android.eggtimernotifications">
+    package="dev.filipebezerra.android.eggtimernotifications"
+    >
+
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
 
     <application
+        android:name=".EggTimerApplication"
         android:allowBackup="true"
         android:icon="@drawable/egg_icon"
         android:label="@string/app_name"
         android:roundIcon="@drawable/egg_notification"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-
-        <activity android:name=".MainActivity">
+        android:theme="@style/AppTheme"
+        >
+        <activity
+            android:name="dev.filipebezerra.android.eggtimernotifications.MainActivity"
+            android:taskAffinity=""
+            >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="dev.filipebezerra.android.eggtimernotifications.important.ImportantActivity"
+            android:excludeFromRecents="true"
+            android:taskAffinity=""
+            />
 
         <receiver
-                android:name=".receiver.AlarmReceiver"
-                android:enabled="true"
-                android:exported="false">
-        </receiver>
+            android:name="dev.filipebezerra.android.eggtimernotifications.receiver.AlarmReceiver"
+            android:enabled="true"
+            android:exported="false"
+            />
         <receiver
-                android:name=".receiver.SnoozeReceiver"
-                android:enabled="true"
-                android:exported="false">
-        </receiver>
+            android:name="dev.filipebezerra.android.eggtimernotifications.receiver.SnoozeReceiver"
+            android:enabled="true"
+            android:exported="false"
+            />
 
+        <service
+            android:name=".service.EggTimerFirebaseMessagingService"
+            android:exported="false"
+            >
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <!--
+            Set custom default icon. This is used when no icon is set for incoming notification messages.
+            See README(https://goo.gl/l4GJaQ) for more.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:value="@drawable/common_google_signin_btn_icon_dark"
+            />
+        <!--
+            Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:value="@color/colorAccent"
+            />
+        <!-- FCM Default Channel -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/breakfast_notification_channel_id"
+            />
     </application>
 
 </manifest>
